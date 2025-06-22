@@ -37,3 +37,22 @@ if (loginForm) {
         postForm('/api/auth/login', data, document.getElementById('loginMsg'));
     });
 }
+
+async function fetchText(url, element) {
+    try {
+        const res = await fetch(url);
+        element.textContent = await res.text();
+    } catch (err) {
+        element.textContent = err;
+    }
+}
+
+const helloMsg = document.getElementById('helloMsg');
+if (helloMsg) {
+    fetchText('/hello', helloMsg);
+}
+
+const homeMsg = document.getElementById('homeMsg');
+if (homeMsg) {
+    fetchText('/', homeMsg);
+}
